@@ -68,7 +68,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         const SizedBox(
                           height: 12,
                         ),
-                        FinancialProducts(),
+                        const FinancialProducts(),
                         const SizedBox(
                           height: 12,
                         ),
@@ -76,7 +76,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         const SizedBox(
                           height: 12,
                         ),
-                        const ExploreWellness(),
+                         const ExploreWellness(),
                         const SizedBox(
                           height: 24,
                         ),

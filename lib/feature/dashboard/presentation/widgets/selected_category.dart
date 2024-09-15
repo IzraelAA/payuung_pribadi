@@ -111,7 +111,7 @@ class SelectedCategory extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
-            childAspectRatio: 1.5,
+            childAspectRatio: 1.1,
           ),
           itemBuilder: (context, index) {
             return Column(
@@ -123,13 +123,15 @@ class SelectedCategory extends StatelessWidget {
                     child: categoryIcon[index],
                   ),
                 ),
+                const SizedBox(height: 4),
                 Text(
                   category[index],
                   style: AppTextStyle().dmSansBody(
                     color: AppColor.blackColor,
                   ),
                   textAlign: TextAlign.center,
-                )
+                ),
+                const SizedBox(height: 12),
               ],
             );
           },

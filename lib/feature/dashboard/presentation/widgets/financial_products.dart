@@ -3,9 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:payuung_pribadi/utils/app_color.dart';
 import 'package:payuung_pribadi/utils/app_text_style.dart';
 
-class FinancialProducts extends StatelessWidget {
-  FinancialProducts({super.key});
+class FinancialProducts extends StatefulWidget {
+  const FinancialProducts({super.key});
 
+  @override
+  State<FinancialProducts> createState() => _FinancialProductsState();
+}
+
+class _FinancialProductsState extends State<FinancialProducts> {
   List category = [
     'Urun',
     'Pembiayaan\nPorsi Haji',
@@ -68,7 +73,7 @@ class FinancialProducts extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4,
-            childAspectRatio: 1.5,
+            childAspectRatio: 1.1,
           ),
           itemBuilder: (context, index) {
             return Column(
@@ -80,13 +85,15 @@ class FinancialProducts extends StatelessWidget {
                     child: categoryIcon[index],
                   ),
                 ),
+                const SizedBox(height: 4),
                 Text(
                   category[index],
                   style: AppTextStyle().dmSansBody(
                     color: AppColor.blackColor,
                   ),
                   textAlign: TextAlign.center,
-                )
+                ),
+                const SizedBox(height: 12),
               ],
             );
           },

@@ -18,10 +18,9 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return SlidingUpPanel(
       controller: panelController,
-      minHeight: 0.11 * MediaQuery.of(context).size.height,
+      minHeight: 100,
       // Minimum height
-      maxHeight: 0.23 * MediaQuery.of(context).size.height,
-      // Maximum height when expanded
+      maxHeight: 300,
       panelBuilder: (controller) => NavBarPanel(
         controller: controller,
         isExpanse: isExpanse,

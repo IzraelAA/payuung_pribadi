@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:payuung_pribadi/core/app_database.dart';
+import 'package:payuung_pribadi/feature/dashboard/data/models/wellness.dart';
 import 'package:payuung_pribadi/feature/dashboard/presentation/pages/dashboard_screen.dart';
 import 'package:payuung_pribadi/feature/profile/data/models/address.dart';
 import 'package:payuung_pribadi/feature/profile/data/models/corporate.dart';
@@ -12,16 +13,20 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   // Daftarkan adapter Hive
+  Hive.registerAdapter(WellnessAdapter());
   Hive.registerAdapter(UserAdapter());
 
   Hive.registerAdapter(CorporateAdapter());
   Hive.registerAdapter(AddressAdapter());
+
+  await Hive.openBox<Wellness>('wellnessBox');
   await Hive.openBox<Address>('personalAddressBox');
   await Hive.openBox<Corporate>('corporateBox');
   await Hive.openBox<User>('userBox');
   AppDatabase().setupHive();
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => PersonalInformationProvider()..loadUserData()),
+    ChangeNotifierProvider(
+        create: (_) => PersonalInformationProvider()..loadUserData()),
   ], child: const MyApp()));
 }
 

@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:payuung_pribadi/feature/dashboard/presentation/widgets/semi_circle_border_painter.dart';
 import 'package:payuung_pribadi/feature/dashboard/presentation/widgets/semi_circle_clipper.dart';
 import 'package:payuung_pribadi/utils/app_color.dart';
@@ -65,14 +66,14 @@ class NavBarPanel extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            _iconButton(
+                            _svgButton(
                               "Daftar Transaksi",
-                              Icons.article,
+                              "daftar_transaksi.svg",
                               false,
                             ),
-                            _iconButton(
+                            _svgButton(
                               "Voucher Saya",
-                              Icons.payments,
+                              "voucher_saya.svg",
                               false,
                             ),
                             _iconButton(
@@ -86,9 +87,9 @@ class NavBarPanel extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            _iconButton(
+                            _svgButton(
                               "Daftar Teman",
-                              Icons.people_outline,
+                              "daftar_teman.svg",
                               false,
                             ),
                             const SizedBox(width: 120,),
@@ -116,6 +117,26 @@ class NavBarPanel extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+  Widget _svgButton(String text, String icon, bool checkBox) {
+    return SizedBox(
+      width: 120,
+      child: Column(
+        children: [
+          SvgPicture.asset(
+            "assets/svg/$icon",height: 24,
+            color: checkBox ? AppColor.primaryColor : AppColor.greyText,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            text,
+            style: AppTextStyle().dmSansBody(
+              color: checkBox ? AppColor.primaryColor : AppColor.greyText,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
