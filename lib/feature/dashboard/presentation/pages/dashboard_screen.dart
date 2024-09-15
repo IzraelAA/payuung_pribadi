@@ -36,59 +36,64 @@ class _DashboardScreenState extends State<DashboardScreen> {
         materialStatus: "",
       );
       await box.put(0, user);
-
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColor.primaryColor,
-      body: Stack(
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              const AppBarDashboard(),
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(32),
-                        topRight: Radius.circular(32),
+    return SafeArea(
+      bottom: true,
+      left: false,
+      right: false,
+      top: false,
+      child: Scaffold(
+        backgroundColor: AppColor.primaryColor,
+        body: Stack(
+          children: [
+            Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                const AppBarDashboard(),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(32),
+                          topRight: Radius.circular(32),
+                        ),
                       ),
-                    ),
-                    child: Column(
-                      children: [
-                        const HeaderDashboard(),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        const FinancialProducts(),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                        SelectedCategory(),
-                        const SizedBox(
-                          height: 12,
-                        ),
-                         const ExploreWellness(),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                      ],
+                      child: Column(
+                        children: [
+                          const HeaderDashboard(),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          const FinancialProducts(),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          SelectedCategory(),
+                          const SizedBox(
+                            height: 12,
+                          ),
+                          const ExploreWellness(),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
-          const NavBar(),
-        ],
+              ],
+            ),
+            const NavBar(),
+          ],
+        ),
       ),
     );
   }
