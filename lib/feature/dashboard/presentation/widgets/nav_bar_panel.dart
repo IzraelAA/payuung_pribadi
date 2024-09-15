@@ -61,6 +61,32 @@ class NavBarPanel extends StatelessWidget {
                             ),
                           ],
                         ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            _svgButton(
+                              "Daftar Transaksi",
+                              "daftar_transaksi.svg",
+                              false,
+                            ),
+                            _svgButton(
+                              "Voucher Saya",
+                              "voucher_saya.svg",
+                              false,
+                            ),
+                            _iconButton(
+                              "Alamat Pengiriman",
+                              Icons.location_on_outlined,
+                              false,
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
