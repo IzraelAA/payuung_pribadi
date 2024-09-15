@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:payuung_pribadi/feature/dashboard/presentation/widgets/semi_circle_border_painter.dart';
@@ -92,8 +91,14 @@ class NavBarPanel extends StatelessWidget {
                               "daftar_teman.svg",
                               false,
                             ),
-                            const SizedBox(width: 120,),
-                            const SizedBox(width: 120,),
+                            const Expanded(
+                                child: SizedBox(
+                              width: 120,
+                            )),
+                            const Expanded(
+                                child: SizedBox(
+                              width: 120,
+                            )),
                           ],
                         ),
                       ],
@@ -119,13 +124,14 @@ class NavBarPanel extends StatelessWidget {
       ],
     );
   }
+
   Widget _svgButton(String text, String icon, bool checkBox) {
-    return SizedBox(
-      width: 120,
+    return Expanded(
       child: Column(
         children: [
           SvgPicture.asset(
-            "assets/svg/$icon",height: 24,
+            "assets/svg/$icon",
+            height: 24,
             color: checkBox ? AppColor.primaryColor : AppColor.greyText,
           ),
           const SizedBox(height: 4),
@@ -141,8 +147,7 @@ class NavBarPanel extends StatelessWidget {
   }
 
   Widget _iconButton(String text, IconData icon, bool checkBox) {
-    return SizedBox(
-      width: 120,
+    return Expanded(
       child: Column(
         children: [
           Icon(

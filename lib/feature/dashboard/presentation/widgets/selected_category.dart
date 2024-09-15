@@ -6,7 +6,7 @@ import 'package:payuung_pribadi/utils/app_text_style.dart';
 class SelectedCategory extends StatelessWidget {
   SelectedCategory({super.key});
 
-  List category = [
+  final List category = [
     'Hobi',
     'Merchandise',
     'Gaya Hidup\nSehat',
@@ -17,7 +17,7 @@ class SelectedCategory extends StatelessWidget {
     'Lihat Semua',
   ];
 
-  List<SvgPicture> categoryIcon = [
+  final List<SvgPicture> categoryIcon = [
     SvgPicture.asset(
       'assets/svg/hobi.svg',
       width: 30,
@@ -68,6 +68,8 @@ class SelectedCategory extends StatelessWidget {
     ),
   ];
 
+  final int itemsPerRow = 4; // Jumlah item per baris
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -101,42 +103,65 @@ class SelectedCategory extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(
-          height: 12,
+        const SizedBox(height: 12),
+        // Membuat grid secara manual menggunakan Row dan Column
+        Column(
+          children: _buildRows(),
+        )
+      ],
+    );
+  }
+
+  // Fungsi untuk membangun daftar Row
+  List<Widget> _buildRows() {
+    List<Widget> rows = [];
+    for (int i = 0; i < category.length; i += itemsPerRow) {
+      rows.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: _buildRowItems(i),
         ),
-        GridView.builder(
-          padding: EdgeInsets.zero,
-          itemCount: category.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: 1.1,
-          ),
-          itemBuilder: (context, index) {
-            return Column(
+      );
+      rows.add(SizedBox(height: 12)); // Jarak antar baris
+    }
+    return rows;
+  }
+
+  // Fungsi untuk membangun item dalam setiap Row
+  List<Widget> _buildRowItems(int startIndex) {
+    List<Widget> rowItems = [];
+    for (int i = startIndex; i < startIndex + itemsPerRow; i++) {
+      if (i < category.length) {
+        rowItems.add(
+          Expanded(
+            child: Column(
               children: [
                 SizedBox(
                   width: 30,
                   height: 30,
                   child: Center(
-                    child: categoryIcon[index],
+                    child: categoryIcon[i],
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  category[index],
-                  style: AppTextStyle().dmSansBody(
-                    color: AppColor.blackColor,
+                SizedBox(
+                  height: 40,
+                  child: Text(
+                    category[i],
+                    style: AppTextStyle().dmSansBody(
+                      color: AppColor.blackColor,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 12),
               ],
-            );
-          },
-        )
-      ],
-    );
+            ),
+          ),
+        );
+      } else {
+        rowItems.add(Expanded(child: Container())); // Untuk mengisi space kosong di baris
+      }
+    }
+    return rowItems;
   }
 }

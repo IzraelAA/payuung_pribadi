@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:payuung_pribadi/utils/app_color.dart';
 import 'package:payuung_pribadi/utils/app_text_style.dart';
@@ -17,6 +19,7 @@ class _FinancialProductsState extends State<FinancialProducts> {
     'Financial\nCheck Up',
     'Asuransi\nMobil',
     'Asuransi\nProperti',
+    // Tambah lebih banyak kategori jika diperlukan
   ];
 
   List<SvgPicture> categoryIcon = [
@@ -52,6 +55,8 @@ class _FinancialProductsState extends State<FinancialProducts> {
     ),
   ];
 
+  final int itemsPerRow = 4; // Jumlah item per baris
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -66,39 +71,64 @@ class _FinancialProductsState extends State<FinancialProducts> {
         const SizedBox(
           height: 12,
         ),
-        GridView.builder(
-          padding: EdgeInsets.zero,
-          itemCount: category.length,
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
-            childAspectRatio: 1.1,
-          ),
-          itemBuilder: (context, index) {
-            return Column(
+        Column(
+          children: _buildRows(), // Buat grid dinamis
+        )
+      ],
+    );
+  }
+
+  // Fungsi untuk membangun daftar Row berdasarkan jumlah item per baris
+  List<Widget> _buildRows() {
+    List<Widget> rows = [];
+    for (int i = 0; i < category.length; i += itemsPerRow) {
+      rows.add(
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: _buildRowItems(i),
+        ),
+      );
+      rows.add(SizedBox(height: 12)); // Jarak antar baris
+    }
+    return rows;
+  }
+
+  // Fungsi untuk membangun item di setiap Row
+  List<Widget> _buildRowItems(int startIndex) {
+    List<Widget> rowItems = [];
+    for (int i = startIndex; i < startIndex + itemsPerRow; i++) {
+      if (i < category.length) {
+        rowItems.add(
+          Expanded(
+            child: Column(
               children: [
                 SizedBox(
                   width: 30,
                   height: 30,
                   child: Center(
-                    child: categoryIcon[index],
+                    child: categoryIcon[i],
                   ),
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  category[index],
-                  style: AppTextStyle().dmSansBody(
-                    color: AppColor.blackColor,
+                SizedBox(
+                  height: 40,
+                  child: Text(
+                    category[i],
+                    style: AppTextStyle().dmSansBody(
+                      color: AppColor.blackColor,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(height: 12),
               ],
-            );
-          },
-        )
-      ],
-    );
+            ),
+          ),
+        );
+      } else {
+        rowItems.add(
+            Expanded(child: Container())); // Untuk menjaga layout tetap rapi
+      }
+    }
+    return rowItems;
   }
 }

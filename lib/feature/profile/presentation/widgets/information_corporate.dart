@@ -42,7 +42,7 @@ class InformationCorporate extends StatelessWidget {
                 Text(
                   "Jabatan".toUpperCase(),
                   style: AppTextStyle()
-                      .dmSansBody(color: Colors.black, fontSize: 16),
+                      .dmSansBody(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),
@@ -80,7 +80,7 @@ class InformationCorporate extends StatelessWidget {
                 Text(
                   "Lama Bekerja".toUpperCase(),
                   style: AppTextStyle()
-                      .dmSansBody(color: Colors.black, fontSize: 16),
+                      .dmSansBody(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),
@@ -118,7 +118,7 @@ class InformationCorporate extends StatelessWidget {
                 Text(
                   "Sumber Pendapatan".toUpperCase(),
                   style: AppTextStyle()
-                      .dmSansBody(color: Colors.black, fontSize: 16),
+                      .dmSansBody(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),
@@ -165,7 +165,7 @@ class InformationCorporate extends StatelessWidget {
                 Text(
                   "Nama Bank".toUpperCase(),
                   style: AppTextStyle()
-                      .dmSansBody(color: Colors.black, fontSize: 16),
+                      .dmSansBody(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),

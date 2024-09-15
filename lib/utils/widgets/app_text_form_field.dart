@@ -63,7 +63,7 @@ class AppTextFormField extends StatelessWidget {
                 labelText!,
                 style: AppTextStyle().dmSansBody(
                   color: Colors.black,
-                  fontSize: 16,
+                  fontSize: 14,
                 ),
               ),
             ],
