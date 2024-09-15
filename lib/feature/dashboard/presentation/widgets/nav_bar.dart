@@ -21,6 +21,7 @@ class _NavBarState extends State<NavBar> {
       minHeight: 100,
       // Minimum height
       maxHeight: 300,
+      padding: EdgeInsets.only(bottom: MediaQuery.of(context).padding.bottom),
       panelBuilder: (controller) => NavBarPanel(
         controller: controller,
         isExpanse: isExpanse,
